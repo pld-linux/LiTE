@@ -13,6 +13,7 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	t1utils
 Requires(post,postun):	/sbin/ldconfig
 Requires:	%{_fontsdir}/TTF
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -71,16 +72,32 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 install examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+install -d $RPM_BUILD_ROOT%{_fontsdir}/Type1
+t1binary $RPM_BUILD_ROOT%{_fontsdir}/TTF/Misc-Fixed.pfa \
+	$RPM_BUILD_ROOT%{_fontsdir}/Type1/Misc-Fixed.pfb
+cat > $RPM_BUILD_ROOT%{_fontsdir}/Type1/fonts.scale.LiTE <<EOF
+Misc-Fixed.pfb -misc-fixed-medium-r-normal--0-0-0-0-m-0-ascii-0
+Misc-Fixed.pfb -misc-fixed-medium-r-normal--0-0-0-0-m-0-iso10646-1
+Misc-Fixed.pfb -misc-fixed-medium-r-normal--0-0-0-0-m-0-iso8859-1
+EOF
+rm -f $RPM_BUILD_ROOT%{_fontsdir}/TTF/Misc-Fixed.pfa
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-[ ! -x /usr/bin/fontpostinst ] || fontpostinst TTF
+if [ -x /usr/bin/fontpostinst ]; then
+	fontpostinst TTF
+	fontpostinst Type1
+fi
 
 %postun
 /sbin/ldconfig
-[ ! -x /usr/bin/fontpostinst ] || fontpostinst TTF
+if [ -x /usr/bin/fontpostinst ]; then
+	fontpostinst TTF
+	fontpostinst Type1
+fi
 
 %files
 %defattr(644,root,root,755)
@@ -90,6 +107,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/liblite.so.*.*.*
 %{_datadir}/LiTE
 %{_fontsdir}/TTF/*.ttf
+%{_fontsdir}/Type1/*.pfb
+%{_fontsdir}/Type1/fonts.scale.LiTE
 
 %files devel
 %defattr(644,root,root,755)
