@@ -1,5 +1,5 @@
 Summary:	LiTE is a Toolkit Engine
-Summary(pl):	LiTE - silnik toolkitu
+Summary(pl.UTF-8):   LiTE - silnik toolkitu
 Name:		LiTE
 Version:	0.7.2
 Release:	1
@@ -21,12 +21,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 LiTE is a Toolkit Engine.
 
-%description -l pl
+%description -l pl.UTF-8
 LiTE - silnik toolkitu.
 
 %package devel
 Summary:	LiTE header files
-Summary(pl):	Pliki nag≥Ûwkowe LiTE
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe LiTE
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	DirectFB-devel >= 1:0.9.24
@@ -34,19 +34,19 @@ Requires:	DirectFB-devel >= 1:0.9.24
 %description devel
 Header files for LiTE library.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki LiTE.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki LiTE.
 
 %package static
 Summary:	LiTE static library
-Summary(pl):	Statyczna biblioteka LiTE
+Summary(pl.UTF-8):   Statyczna biblioteka LiTE
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 LiTE static library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka LiTE.
 
 %prep
