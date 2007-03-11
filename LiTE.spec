@@ -1,14 +1,14 @@
 Summary:	LiTE is a Toolkit Engine
 Summary(pl.UTF-8):	LiTE - silnik toolkitu
 Name:		LiTE
-Version:	0.7.2
+Version:	0.8.3
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.directfb.org/downloads/Libs/%{name}-%{version}.tar.gz
-# Source0-md5:	a2e744454155c52aa37d1bb11c078e84
+# Source0-md5:	beb2beed9ee6d07590f9c804a7926058
 URL:		http://www.directfb.org/
-BuildRequires:	DirectFB-devel >= 1:0.9.24
+BuildRequires:	DirectFB-devel >= 1:1.0.0
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -29,7 +29,7 @@ Summary:	LiTE header files
 Summary(pl.UTF-8):	Pliki nagłówkowe LiTE
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	DirectFB-devel >= 1:0.9.24
+Requires:	DirectFB-devel >= 1:1.0.0
 
 %description devel
 Header files for LiTE library.
