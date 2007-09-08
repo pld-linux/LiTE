@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# don't build static libraries
+#
 Summary:	LiTE is a Toolkit Engine
 Summary(pl.UTF-8):	LiTE - silnik toolkitu
 Name:		LiTE
@@ -60,7 +64,8 @@ Statyczna biblioteka LiTE.
 %{__automake}
 %configure \
 	--enable-static \
-	--with-fontdir=%{_fontsdir}/TTF
+	--with-fontdir=%{_fontsdir}/TTF \
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
@@ -118,6 +123,8 @@ fi
 %{_pkgconfigdir}/lite.pc
 %{_examplesdir}/%{name}-%{version}
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/liblite.a
+%endif
