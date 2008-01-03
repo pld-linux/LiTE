@@ -110,6 +110,7 @@ fi
 %attr(755,root,root) %{_bindir}/dfbspy
 %attr(755,root,root) %{_bindir}/literun
 %attr(755,root,root) %{_libdir}/liblite.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/liblite.so.3
 %{_datadir}/LiTE
 %{_fontsdir}/TTF/*.ttf
 %{_fontsdir}/Type1/*.pfb
