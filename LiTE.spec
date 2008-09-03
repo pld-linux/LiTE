@@ -5,13 +5,13 @@
 Summary:	LiTE is a Toolkit Engine
 Summary(pl.UTF-8):	LiTE - silnik toolkitu
 Name:		LiTE
-Version:	0.8.6
+Version:	0.8.9
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.directfb.org/downloads/Libs/%{name}-%{version}.tar.gz
-# Source0-md5:	eb5e7b637883548ae99b577efeefd50e
-URL:		http://www.directfb.org/
+# Source0-md5:	6f58a828dbfdce4cee658da4d61c3099
+URL:		http://www.directfb.org/index.php?path=Platform/LiTE
 BuildRequires:	DirectFB-devel >= 1:1.0.0
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -75,7 +75,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+install examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 install -d $RPM_BUILD_ROOT%{_fontsdir}/Type1
 t1binary $RPM_BUILD_ROOT%{_fontsdir}/TTF/Misc-Fixed.pfa \
@@ -107,25 +107,33 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_bindir}/dfbspy
-%attr(755,root,root) %{_bindir}/literun
+%attr(755,root,root) %{_bindir}/lite_*
+%attr(755,root,root) %{_libdir}/libleck.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libleck.so.3
 %attr(755,root,root) %{_libdir}/liblite.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/liblite.so.3
 %{_datadir}/LiTE
-%{_fontsdir}/TTF/*.ttf
-%{_fontsdir}/Type1/*.pfb
+%{_fontsdir}/TTF/decker.ttf
+%{_fontsdir}/TTF/vera*.ttf
+%{_fontsdir}/TTF/whiterabbit.ttf
+%{_fontsdir}/Type1/Misc-Fixed.pfb
 %{_fontsdir}/Type1/fonts.scale.LiTE
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libleck.so
 %attr(755,root,root) %{_libdir}/liblite.so
+%{_libdir}/libleck.la
 %{_libdir}/liblite.la
+%{_includedir}/leck
 %{_includedir}/lite
+%{_pkgconfigdir}/leck.pc
 %{_pkgconfigdir}/lite.pc
 %{_examplesdir}/%{name}-%{version}
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
+%{_libdir}/libleck.a
 %{_libdir}/liblite.a
 %endif
