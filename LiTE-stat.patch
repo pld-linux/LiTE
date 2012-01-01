@@ -1,0 +1,38 @@
+stat already declared as different kind of symbol
+--- LiTE-0.8.10/examples/dfbspy.c.orig	2008-06-21 01:22:49.000000000 +0200
++++ LiTE-0.8.10/examples/dfbspy.c	2012-01-01 11:01:33.872553222 +0100
+@@ -89,9 +89,9 @@
+ 
+ /**************************************************************************************************/
+ 
+-#define CALC(x)     stat.x = (int)(((s.x - last_stat.x) * 1000 / (float) diff) + 0.5f)
++#define CALC(x)     cur_stat.x = (int)(((s.x - last_stat.x) * 1000 / (float) diff) + 0.5f)
+ 
+-static FusionStat last_stat, stat;
++static FusionStat last_stat, cur_stat;
+ static long long  last_millis;
+ 
+ static int
+@@ -145,14 +145,14 @@
+      void          (*update)( LiteLabel *label, void *ctx );
+      void           *ctx;
+ } list[] = {
+-     { "lease/purchase", update_number, &stat.lease_purchase },
+-     { "cede",           update_number, &stat.cede },
+-     { "attach",         update_number, &stat.attach },
+-     { "detach",         update_number, &stat.detach },
+-     { "ref up",         update_number, &stat.ref_up },
+-     { "ref down",       update_number, &stat.ref_down },
+-     { "prevail/swoop",  update_number, &stat.prevail_swoop },
+-     { "dismiss",        update_number, &stat.dismiss }
++     { "lease/purchase", update_number, &cur_stat.lease_purchase },
++     { "cede",           update_number, &cur_stat.cede },
++     { "attach",         update_number, &cur_stat.attach },
++     { "detach",         update_number, &cur_stat.detach },
++     { "ref up",         update_number, &cur_stat.ref_up },
++     { "ref down",       update_number, &cur_stat.ref_down },
++     { "prevail/swoop",  update_number, &cur_stat.prevail_swoop },
++     { "dismiss",        update_number, &cur_stat.dismiss }
+ };
+ 
+ #define NUM_LIST    (sizeof(list)/sizeof(list[0]))
